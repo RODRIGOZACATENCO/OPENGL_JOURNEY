@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="" vcs="Git" />
+    <mapping directory="$USER_HOME$/Documents/offline_libraries/assimp" vcs="Git" />
+    <mapping directory="$USER_HOME$/Documents/offline_libraries/glfw" vcs="Git" />
+    <mapping directory="$USER_HOME$/Documents/offline_libraries/glm" vcs="Git" />
+  </component>
+</project>
