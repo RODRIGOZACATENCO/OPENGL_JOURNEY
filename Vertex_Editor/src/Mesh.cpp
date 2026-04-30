@@ -2,10 +2,12 @@
 // Created by rodrigo on 27/04/2026.
 //
 
-#include<HalfEdge.h>
+#include<Mesh.h>
 #include <iostream>
+#include <random>
 #include<glm/glm.hpp>
 #include "glad/glad.h"
+#include "ShaderHandler.h"
 //given an array of vertices to form triangles, and grupos of 3 indices that from a face
 //we need to create the mesh structure
 void Mesh::process_mesh(std::vector<float> *input_vertices, std::vector<int> *input_faces) {
@@ -104,11 +106,15 @@ void Mesh::show_mesh_structure() {
 			halfedge_index=half_edge.next;
 		}
 	}
+	for (auto index:render_indices) {
+		std::cout<<index<<" ";
+	}
 }
 
 void Mesh::render_mesh() {
 	glBindVertexArray(VAO);
 	glDrawElements(GL_TRIANGLES,render_indices.size(),GL_UNSIGNED_INT,0);
+
 }
 void Mesh::setupRenderIndices() {
 	//need to extract the order in witch to draw the triangles
@@ -135,6 +141,20 @@ void Mesh::renderSetup() {
 	glVertexAttribPointer(0,3,GL_FLOAT,GL_FALSE,sizeof(Vertex),(void*)offsetof(Vertex,point));
 	glEnableVertexAttribArray(0);
 	glBindVertexArray(0);
+}
 
+glm::vec3 Mesh::randomRGB() {
+	// 1. Set up the random number generator (do this statically so it's only seeded once)
+	static std::random_device rd;  // Hardware seed
+	static std::mt19937 gen(rd()); // Mersenne Twister engine
 
+	// 2. Define the distribution range (0.0 to 1.0 for OpenGL)
+	std::uniform_real_distribution<float> dis(0.0f, 1.0f);
+
+	// 3. Generate the RGB channels
+	float r = dis(gen);
+	float g = dis(gen);
+	float b = dis(gen);
+
+	return glm::vec3(r, g, b);
 }

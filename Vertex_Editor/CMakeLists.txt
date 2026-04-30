@@ -13,9 +13,13 @@ add_executable(${PROJECT_NAME}
         ${SOURCES}
         "${SHARED_INCLUDE_DIR}/glad/src/glad.c"
         src/CameraHandler.cpp
-        include/HalfEdge.h
+        include/Mesh.h
         OpenGL_include/ShaderHandler.h
-        src/HalfEdge.cpp
+        src/Mesh.cpp
+        src/MouseHandling.cpp
+        include/MouseHandling.h
+        src/MainWindow.cpp
+        include/MainWindow.h
 )
 target_include_directories(${PROJECT_NAME} PRIVATE
         include

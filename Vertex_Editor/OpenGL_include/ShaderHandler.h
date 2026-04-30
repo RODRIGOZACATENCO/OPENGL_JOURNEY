@@ -129,6 +129,7 @@ public:
     {
         glUniform3f(glGetUniformLocation(ID, name.c_str()),x,y,z);
     }
+
 };
 
 #endif

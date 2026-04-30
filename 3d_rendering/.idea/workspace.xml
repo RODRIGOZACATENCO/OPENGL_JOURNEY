@@ -6,6 +6,8 @@
   <component name="BackendCodeEditorMiscSettings">
     <option name="/Default/Environment/Hierarchy/GeneratedFilesCacheKey/Timestamp/@EntryValue" value="14" type="long" />
     <option name="/Default/Housekeeping/FeatureSuggestion/FeatureSuggestionManager/DisabledSuggesters/=SwitchToGoToActionSuggester/@EntryIndexedValue" value="true" type="bool" />
+    <option name="/Default/Housekeeping/GlobalSettingsUpgraded/IsUpgraded/@EntryValue" value="true" type="bool" />
+    <option name="/Default/RiderDebugger/RiderRestoreDecompile/RestoreDecompileSetting/@EntryValue" value="false" type="bool" />
   </component>
   <component name="CMakePresetLoader">{
   &quot;useNewFormat&quot;: true
@@ -29,7 +31,27 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="20d7fd40-27c0-4be4-bd64-3790ab07173a" name="Changes" comment="" />
+    <list default="true" id="20d7fd40-27c0-4be4-bd64-3790ab07173a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../Vertex_Editor/OpenGL_include/stb_image.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Vertex_Editor/include/MouseHandling.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Vertex_Editor/shaders/screenShader.Frag" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Vertex_Editor/shaders/screenShader.vert" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Vertex_Editor/src/MouseHandling.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Vertex_Editor/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Vertex_Editor/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Vertex_Editor/OpenGL_include/ShaderHandler.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Vertex_Editor/OpenGL_include/ShaderHandler.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Vertex_Editor/OpenGL_include/TextureHandler.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Vertex_Editor/OpenGL_include/TextureHandler.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Vertex_Editor/include/CameraHandler.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Vertex_Editor/include/CameraHandler.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Vertex_Editor/include/HalfEdge.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Vertex_Editor/include/Mesh.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Vertex_Editor/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Vertex_Editor/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Vertex_Editor/shaders/shader.frag" beforeDir="false" afterPath="$PROJECT_DIR$/../Vertex_Editor/shaders/shader.frag" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Vertex_Editor/shaders/shader.vert" beforeDir="false" afterPath="$PROJECT_DIR$/../Vertex_Editor/shaders/shader.vert" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Vertex_Editor/src/CameraHandler.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Vertex_Editor/src/CameraHandler.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Vertex_Editor/src/HalfEdge.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Vertex_Editor/src/Mesh.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lighting/point_light/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lighting/point_light/.idea/editor.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lighting/point_light/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lighting/point_light/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lighting/point_light/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../lighting/point_light/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../textures/Texture-test" beforeDir="false" afterPath="$PROJECT_DIR$/../textures/Texture-test" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -40,8 +62,20 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$USER_HOME$/Documents/offline_libraries/glfw" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "RODRIGOZACATENCO"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/RODRIGOZACATENCO/OPENGL_JOURNEY.git",
+    "accountId": "4b756221-8021-406c-bf05-36a2a467af87"
+  }
+}]]></component>
   <component name="MacroExpansionManager">
     <option name="directoryName" value="cVS68QLN" />
   </component>
@@ -83,11 +117,6 @@
   }
 }</component>
   <component name="RunManager" selected="CMake Application.uninstall">
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="glfw" type="CMakeRunConfiguration" factoryName="Application" folderName="GLFW3" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Project" TARGET_NAME="glfw" CONFIG_NAME="Debug">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -104,8 +133,8 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="CMake Application.uninstall" />
       <item itemvalue="CMake Application.glfw" />
+      <item itemvalue="CMake Application.uninstall" />
       <item itemvalue="CMake Application.update_mappings" />
     </list>
   </component>
@@ -123,6 +152,7 @@
       <workItem from="1773804509047" duration="1615000" />
       <workItem from="1773858444083" duration="133000" />
       <workItem from="1773858824401" duration="146000" />
+      <workItem from="1777498705454" duration="4000" />
     </task>
     <servers />
   </component>

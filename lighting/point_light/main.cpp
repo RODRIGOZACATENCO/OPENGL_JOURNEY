@@ -244,8 +244,6 @@ int main() {
 		//shader.setVec3("light.direction",lightDir);
 		float radius=3;
 		glm::vec3 lightPos(radius*glm::sin(glfwGetTime()),1.0f,radius*glm::cos(glfwGetTime()));
-
-
 		shader.setVec3("light.position",lightPos);
 		glm::mat4 model = glm::mat4(1.0f);
 		for(unsigned int i = 0; i < 10; i++)

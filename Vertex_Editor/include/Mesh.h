@@ -9,12 +9,14 @@
 #include<glm/glm.hpp>
 #include<vector>
 
+#include "ShaderHandler.h"
+
 
 struct HalfEdge;
-	struct Vertex {
-		glm::vec3 point;
-		int halfedge;
-	};
+struct Vertex {
+	glm::vec3 point;
+	int halfedge;
+};
 
 struct Edge {
 	int halfedge;
@@ -42,17 +44,22 @@ public:
 	void process_mesh(std::vector<float>*vertices, std::vector<int>*faces);
 	void show_mesh_structure();
 	void render_mesh();
-	Mesh(std::vector<float>*vertices, std::vector<int>*faces) {
-	process_mesh(vertices, faces);
-	setupRenderIndices();
+	Shader *shader;
+	Mesh(std::vector<float>*vertices, std::vector<int>*faces,Shader *draw_shader)
+	:shader(draw_shader) {
+		process_mesh(vertices, faces);
+		setupRenderIndices();
 	}
+
 	void renderSetup();
 private:
 	unsigned int VAO;
 	unsigned int VBO;
 	unsigned int EBO;
+
 	std::vector<unsigned int>render_indices;
 	void setupRenderIndices();
-
+	std::vector<glm::vec3> colors;
+	glm::vec3 randomRGB();
 };
 #endif //VERTEXEDITOR_HALFEDGE_H
