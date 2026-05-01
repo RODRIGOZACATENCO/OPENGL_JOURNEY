@@ -6,7 +6,7 @@
 #include <iostream>
 #include <random>
 #include<glm/glm.hpp>
-#include "glad/glad.h"
+
 #include "ShaderHandler.h"
 //given an array of vertices to form triangles, and grupos of 3 indices that from a face
 //we need to create the mesh structure
@@ -59,7 +59,7 @@ void Mesh::process_mesh(std::vector<float> *input_vertices, std::vector<int> *in
 				save new edge on the main vector
 			 */
 			int current_vertex=vertex_indices[j], next_vertex=vertex_indices[(j+1)%3];
-			//twin exists, check if there's an edge already in the opposite direction
+			//twin exists, csecond=model;heck if there's an edge already in the opposite direction
 			//if it exists ,it's halfedge must be the twin half edge
 			if (edge_lookup.find({next_vertex,current_vertex})!=edge_lookup.end()) {
 
@@ -81,7 +81,6 @@ void Mesh::process_mesh(std::vector<float> *input_vertices, std::vector<int> *in
 		current_face_index++;
 		faces.push_back(face);
 	}
-	setupRenderIndices();
 }
 
 void Mesh::show_mesh_structure() {
@@ -111,11 +110,6 @@ void Mesh::show_mesh_structure() {
 	}
 }
 
-void Mesh::render_mesh() {
-	glBindVertexArray(VAO);
-	glDrawElements(GL_TRIANGLES,render_indices.size(),GL_UNSIGNED_INT,0);
-
-}
 void Mesh::setupRenderIndices() {
 	//need to extract the order in witch to draw the triangles
 	render_indices.clear();
@@ -129,19 +123,7 @@ void Mesh::setupRenderIndices() {
 	}
 }
 
-void Mesh::renderSetup() {
-	glGenVertexArrays(1,&VAO);
-	glGenBuffers(1,&VBO);
-	glGenBuffers(1,&EBO);
-	glBindVertexArray(VAO);
-	glBindBuffer(GL_ARRAY_BUFFER,VBO);
-	glBufferData(GL_ARRAY_BUFFER,vertices.size()*sizeof(Vertex),vertices.data(),GL_STATIC_DRAW);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,EBO);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER,render_indices.size()*sizeof(unsigned int),render_indices.data(),GL_STATIC_DRAW);
-	glVertexAttribPointer(0,3,GL_FLOAT,GL_FALSE,sizeof(Vertex),(void*)offsetof(Vertex,point));
-	glEnableVertexAttribArray(0);
-	glBindVertexArray(0);
-}
+
 
 glm::vec3 Mesh::randomRGB() {
 	// 1. Set up the random number generator (do this statically so it's only seeded once)

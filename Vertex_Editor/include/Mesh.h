@@ -41,23 +41,17 @@ public:
 	std::vector<Vertex> vertices;
 	std::vector<Edge> edges;
 	std::map<std::pair<int,int>,int> edge_lookup;
+	std::vector<unsigned int>render_indices;
 	void process_mesh(std::vector<float>*vertices, std::vector<int>*faces);
 	void show_mesh_structure();
-	void render_mesh();
-	Shader *shader;
-	Mesh(std::vector<float>*vertices, std::vector<int>*faces,Shader *draw_shader)
-	:shader(draw_shader) {
+
+	Mesh(std::vector<float>*vertices, std::vector<int>*faces){
 		process_mesh(vertices, faces);
 		setupRenderIndices();
 	}
 
-	void renderSetup();
 private:
-	unsigned int VAO;
-	unsigned int VBO;
-	unsigned int EBO;
 
-	std::vector<unsigned int>render_indices;
 	void setupRenderIndices();
 	std::vector<glm::vec3> colors;
 	glm::vec3 randomRGB();

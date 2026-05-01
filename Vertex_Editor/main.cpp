@@ -4,10 +4,11 @@
 // Shared headers from your global directory
 #include <random>
 
-#include "MouseHandling.h"
+#include "MainWindow.h"
+
 #include "ShaderHandler.h"
 #include "TextureHandler.h"
-#include "../include/CameraHandler.h"
+
 #include "../include/Mesh.h"
 
 
@@ -85,10 +86,6 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 	if (key == GLFW_KEY_P && action == GLFW_PRESS) {
 		use_main_buffer = !use_main_buffer;
 	}
-	if (key == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS) {
-
-	}
-
 }
 
 void processInput(GLFWwindow* window) {
@@ -96,37 +93,6 @@ void processInput(GLFWwindow* window) {
 		glfwSetWindowShouldClose(window, GLFW_TRUE);
 	}
 }
-
-
-
-void mainMeshWindow(GLFWwindow *window,Shader *shader,Mesh *mesh) {
-	int width, height;
-	glfwGetFramebufferSize(window, &width, &height);
-	float aspect=(float)width/(float)height;
-	glm::mat4 model=glm::mat4(1.0f);
-	model=glm::translate(model,glm::vec3(0.0f,0.0f,-1.5f));
-	model=glm::rotate(model,glm::radians(35.0f),glm::vec3(0.4f,1.0f,0.0f));
-	model=glm::scale(model,glm::vec3(0.7f,0.7f,0.7f));
-	glm::mat4 view=glm::lookAt(glm::vec3(0.0f,0.0f,2.0f),glm::vec3(0.0f,0.0f,0.0f),glm::vec3(0.0f,1.0f,0.0f));
-	glm::mat4 projection=glm::perspective(glm::radians(45.0f),aspect,0.1f,100.0f);
-	if (use_main_buffer) {
-		shader->use();
-		shader->setMat4("model",model);
-		shader->setMat4("view",view);
-		shader->setMat4("projection",projection);
-
-		glm::vec3 color=glm::vec3(0.0f,0.0f,1.0f);
-		glBindFramebuffer(GL_FRAMEBUFFER,0);
-		glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
-		glEnable(GL_DEPTH_TEST);
-		glEnable(GL_CULL_FACE);
-		glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
-		shader->setVec3("aColor",color);
-		mesh->render_mesh();
-	}
-}
-
 //i need to consolidate the windows in somethin, to make it easier to work with
 int main() {
 	// GLFW Init
@@ -161,27 +127,17 @@ int main() {
 	std::string fragment_colorPickingShader_path="../shaders/colorPickingShader.frag";
 	Shader color_picking_shader(vertex_shader_path.c_str(),fragment_colorPickingShader_path.c_str());
 	std::vector<glm::vec3> colors;
-
-	Mesh mesh(&triangle_vertices,&faces,&color_picking_shader);
-	mesh.renderSetup();
+	Mesh mesh(&triangle_vertices,&faces);
 
 
-	int width,height;
-	glfwGetFramebufferSize(window, &width, &height);
-	glViewport(0, 0, width, height);
-
+	MainWindow main_window(window);
 	glfwSetKeyCallback(window, key_callback);
-
-
 
     while (!glfwWindowShouldClose(window)) {
 
-
-    	processInput(window);
-        glfwSwapBuffers(window);
-        glfwPollEvents();
-
-
+    		processInput(window);
+    		glfwSwapBuffers(window);
+    		glfwPollEvents();
     }
     glfwTerminate();
     return 0;

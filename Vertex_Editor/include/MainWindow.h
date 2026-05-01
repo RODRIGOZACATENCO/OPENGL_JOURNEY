@@ -4,16 +4,60 @@
 
 #ifndef VERTEXEDITOR_MAINWINDOW_H
 #define VERTEXEDITOR_MAINWINDOW_H
+#include <GLFW/glfw3.h>
+
+#include "Mesh.h"
 
 /*vertex editor main window
- *render pass that renders the object
+ *render pass that shows  the object
  *color picking pass that renders color ID's
  *gimball camera that rotates around the object
  *soft simple lighting around the object
 */
+
+struct RenderInfo {
+	unsigned int VAO;
+	unsigned int VBO;
+	unsigned int EBO;
+	glm::mat4 model;
+};
+
+
+
 class MainWindow {
-	public:
-		void use();
+public:
+	GLFWwindow *window;
+	Shader *shader;
+	std::map<std::string,std::pair<Mesh*,RenderInfo*>> meshes;
+	glm::mat4 view;
+	glm::mat4 projection;
+	MainWindow(GLFWwindow *window) {
+		this->window=window;
+	}
+	void use();
+	void mainRenderPass();
+	void colorIDPass();
+
+	void renderSetup();
+	void setViewMatrix(glm::mat4 viewm){
+		this->view = viewm;
+	}
+	void setProjectionMatrix(glm::mat4 projectionm) {
+		this->projection = projectionm;
+	}
+	void addMesh(Mesh *mesh,std::string name,glm::mat4 model) {
+		RenderInfo *render_info=new RenderInfo();
+		render_info->model=model;
+		meshes.insert({name,{mesh,render_info}});
+	}
+	void setModelMatrix(std::string name,glm::mat4 model) {
+		if (meshes.find(name) != meshes.end()) {
+			meshes[name].second->model=model;
+		}
+		else {
+			std::cout<<"Mesh "<<name<<" not found"<<std::endl;
+		}
+	}
 private:
 
 };

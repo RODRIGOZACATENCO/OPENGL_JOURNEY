@@ -14,6 +14,7 @@ add_executable(${PROJECT_NAME}
         "${SHARED_INCLUDE_DIR}/glad/src/glad.c"
         src/CameraHandler.cpp
         include/Mesh.h
+
         OpenGL_include/ShaderHandler.h
         src/Mesh.cpp
         src/MouseHandling.cpp

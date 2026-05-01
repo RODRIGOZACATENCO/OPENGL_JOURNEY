@@ -1,7 +1,6 @@
 #ifndef SHADER_H
 #define SHADER_H
-
-#include <glad/glad.h> // include glad to get the required OpenGL headers
+#include <glad/glad.h>
 #include <string>
 #include <fstream>
 #include <sstream>
@@ -9,7 +8,6 @@
 
 #include<glm/glm.hpp>
 #include<glm/gtc/type_ptr.hpp>
-#include "stb_image.h"
 class Shader
 {
 public:
