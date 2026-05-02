@@ -1,0 +1,37 @@
+# ninja log v7
+1	14	1777692613508216377	imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-mkdir	12526102d9c3ef3a
+1	14	1777692613508216377	/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-mkdir	12526102d9c3ef3a
+14	32037	1777692645531081844	imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-download	972c0fbd1daf5b8c
+14	32037	1777692645531081844	/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-download	972c0fbd1daf5b8c
+0	13	1777692851453948650	imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-update	ce99839b3205966
+0	13	1777692851453948650	/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-update	ce99839b3205966
+13	26	1777692851478948635	imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-patch	3167515ffc8bd548
+13	26	1777692851478948635	/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-patch	3167515ffc8bd548
+26	39	1777692851492948626	imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-configure	1f23073341110743
+26	39	1777692851492948626	/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-configure	1f23073341110743
+40	52	1777692851505948618	imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-build	b3a8770586020b7f
+40	52	1777692851505948618	/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-build	b3a8770586020b7f
+52	63	1777692851516948611	imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-install	55c67e1597038d49
+52	63	1777692851516948611	/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-install	55c67e1597038d49
+63	75	1777692851527948604	imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-test	e0d7eb8806ca4b6b
+63	75	1777692851527948604	/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-test	e0d7eb8806ca4b6b
+75	92	1777692851545948593	CMakeFiles/imgui-populate-complete	f7722a868df2f094
+75	92	1777692851545948593	imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-done	f7722a868df2f094
+75	92	1777692851545948593	/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-subbuild/CMakeFiles/imgui-populate-complete	f7722a868df2f094
+75	92	1777692851545948593	/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-done	f7722a868df2f094
+0	14	1777693160559757464	imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-update	ce99839b3205966
+0	14	1777693160559757464	/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-update	ce99839b3205966
+14	28	1777693160587757447	imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-patch	3167515ffc8bd548
+14	28	1777693160587757447	/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-patch	3167515ffc8bd548
+28	43	1777693160602757438	imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-configure	1f23073341110743
+28	43	1777693160602757438	/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-configure	1f23073341110743
+43	58	1777693160616757429	imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-build	b3a8770586020b7f
+43	58	1777693160616757429	/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-build	b3a8770586020b7f
+58	72	1777693160631757420	imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-install	55c67e1597038d49
+58	72	1777693160631757420	/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-install	55c67e1597038d49
+72	86	1777693160644757412	imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-test	e0d7eb8806ca4b6b
+72	86	1777693160644757412	/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-test	e0d7eb8806ca4b6b
+86	105	1777693160664757400	CMakeFiles/imgui-populate-complete	f7722a868df2f094
+86	105	1777693160664757400	imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-done	f7722a868df2f094
+86	105	1777693160664757400	/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-subbuild/CMakeFiles/imgui-populate-complete	f7722a868df2f094
+86	105	1777693160664757400	/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-done	f7722a868df2f094

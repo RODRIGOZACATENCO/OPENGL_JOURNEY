@@ -10,8 +10,9 @@
 #include "TextureHandler.h"
 
 #include "../include/Mesh.h"
-
-
+#include "imgui.h"
+#include "imgui_impl_glfw.h"
+#include "imgui_impl_opengl3.h"
 std::vector<float> triangle_vertices{
 	-1,-1,-1,//bottom left back 0
 	-1,-1, 1,//bottom left front 1
@@ -76,8 +77,8 @@ std::vector<int> faces={
 	5, 4, 1
 };
 bool use_main_buffer=true;
-
-
+Mesh mesh(&triangle_vertices,&faces);
+MainWindow main_window(nullptr);
 void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
     glViewport(0, 0, width, height);
 
@@ -89,11 +90,26 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 }
 
 void processInput(GLFWwindow* window) {
+
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
 		glfwSetWindowShouldClose(window, GLFW_TRUE);
 	}
 }
-//i need to consolidate the windows in somethin, to make it easier to work with
+void mouseCallback(GLFWwindow* window,int button,int action,int mods) {
+	if (button==GLFW_MOUSE_BUTTON_LEFT && action==GLFW_PRESS) {
+		if(main_window.mouseDetection()){
+			std::cout<<"Face "<<main_window.mouseDetection()<<" clicked!"<<std::endl;
+			mesh.updateFaceSelection(main_window.mouseDetection()-1);
+			main_window.update_faces_selected = true;//sets a flag on the main window to update the selected faces on the shader
+		}
+		else {
+			std::cout<<"No face clicked!"<<std::endl;
+		}
+	}
+
+}
+
+
 int main() {
 	// GLFW Init
 	if (!glfwInit()) return -1;
@@ -116,29 +132,48 @@ int main() {
 		return -1;
 	}
 
+	IMGUI_CHECKVERSION();
+	ImGui::CreateContext();
+	ImGuiIO& io = ImGui::GetIO(); (void)io;
+	ImGui::StyleColorsDark();
+	ImGui_ImplGlfw_InitForOpenGL(window, true);
+	ImGui_ImplOpenGL3_Init("#version 460 core");
+
 	int frameBufferWidth = 800;
 	int frameBufferHeight = 600;
 	glfwGetFramebufferSize(window,&frameBufferWidth,&frameBufferHeight);
 	glViewport(0,0,frameBufferWidth,frameBufferHeight);
-	// Render Loop
-	std::string vertex_shader_path="../shaders/shader.vert";
-	std::string fragment_shader_path="../shaders/shader.frag";
-	Shader shader(vertex_shader_path.c_str(),fragment_shader_path.c_str());
-	std::string fragment_colorPickingShader_path="../shaders/colorPickingShader.frag";
-	Shader color_picking_shader(vertex_shader_path.c_str(),fragment_colorPickingShader_path.c_str());
+	
 	std::vector<glm::vec3> colors;
-	Mesh mesh(&triangle_vertices,&faces);
+	main_window.setWindow(window);
 
+	glm::mat4 view=glm::lookAt(glm::vec3(0,0,3),glm::vec3(0,0,0),glm::vec3(0,1,0));
+	glm::mat4 projection=glm::perspective(glm::radians(45.0f),(float)frameBufferWidth/(float)frameBufferHeight,0.1f,100.0f);
+	main_window.addMesh(&mesh,"cube",glm::mat4(1.0f));
 
-	MainWindow main_window(window);
+	main_window.setViewMatrix(view);
+	main_window.setProjectionMatrix(projection);
 	glfwSetKeyCallback(window, key_callback);
+	glfwSetMouseButtonCallback(window, mouseCallback);
 
     while (!glfwWindowShouldClose(window)) {
 
-    		processInput(window);
-    		glfwSwapBuffers(window);
-    		glfwPollEvents();
+		glm::mat4 model=glm::mat4(1.0f);
+		model=glm::translate(model,glm::vec3(0,0,-2));
+		model=glm::scale(model,glm::vec3(0.7f));
+		//model=glm::rotate(model,(float)glfwGetTime(),glm::vec3(1,1,0));
+		model=glm::rotate(model,(float)glfwGetTime(),glm::vec3(0.3,0.7,0));
+		main_window.setModelMatrix("cube",model);
+		main_window.use();
+
+		processInput(window);
+		glfwSwapBuffers(window);
+		glfwPollEvents();
     }
+
+	ImGui_ImplOpenGL3_Shutdown();
+	ImGui_ImplGlfw_Shutdown();
+	ImGui::DestroyContext();
     glfwTerminate();
     return 0;
 }

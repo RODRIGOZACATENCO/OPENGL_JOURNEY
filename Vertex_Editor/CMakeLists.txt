@@ -3,6 +3,15 @@ project(VertexEditor)
 
 set(CMAKE_CXX_STANDARD 20)
 
+include(FetchContent)
+
+FetchContent_Declare(
+    imgui
+    GIT_REPOSITORY https://github.com/ocornut/imgui.git
+    GIT_TAG v1.89.8
+)
+FetchContent_MakeAvailable(imgui)
+
 # Set your shared includes
 set(SHARED_INCLUDE_DIR "OpenGL_include")
 SET(HEADER_DIR "../headers")
@@ -14,13 +23,14 @@ add_executable(${PROJECT_NAME}
         "${SHARED_INCLUDE_DIR}/glad/src/glad.c"
         src/CameraHandler.cpp
         include/Mesh.h
-
+        include/MainWindow.h
+        include/MouseHandling.h
         OpenGL_include/ShaderHandler.h
         src/Mesh.cpp
         src/MouseHandling.cpp
-        include/MouseHandling.h
+
         src/MainWindow.cpp
-        include/MainWindow.h
+
 )
 target_include_directories(${PROJECT_NAME} PRIVATE
         include
@@ -36,6 +46,21 @@ find_package(assimp REQUIRED)
 find_package(glm REQUIRED)
 
 # Link them
+target_sources(${PROJECT_NAME} PRIVATE
+        ${imgui_SOURCE_DIR}/imgui_demo.cpp
+        ${imgui_SOURCE_DIR}/imgui.cpp
+        ${imgui_SOURCE_DIR}/imgui_draw.cpp
+        ${imgui_SOURCE_DIR}/imgui_tables.cpp
+        ${imgui_SOURCE_DIR}/imgui_widgets.cpp
+        ${imgui_SOURCE_DIR}/backends/imgui_impl_glfw.cpp
+        ${imgui_SOURCE_DIR}/backends/imgui_impl_opengl3.cpp
+)
+
+target_include_directories(${PROJECT_NAME} PRIVATE
+        ${imgui_SOURCE_DIR}
+        ${imgui_SOURCE_DIR}/backends
+)
+
 target_link_libraries(${PROJECT_NAME} PRIVATE
         glfw
         assimp::assimp
@@ -47,4 +72,5 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
 target_compile_definitions(${PROJECT_NAME} PRIVATE
         ROOT_DIR="${CMAKE_CURRENT_SOURCE_DIR}/"
         HEADER_DIR="../include"
+        IMGUI_IMPL_OPENGL_LOADER_GLAD
 )

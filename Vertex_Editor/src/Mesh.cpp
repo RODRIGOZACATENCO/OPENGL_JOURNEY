@@ -110,6 +110,7 @@ void Mesh::show_mesh_structure() {
 	}
 }
 
+
 void Mesh::setupRenderIndices() {
 	//need to extract the order in witch to draw the triangles
 	render_indices.clear();
@@ -120,7 +121,9 @@ void Mesh::setupRenderIndices() {
 			render_indices.push_back(half_edges[halfedge_index].vertex);
 			halfedge_index=half_edges[halfedge_index].next;
 		}
+		face_is_selected.push_back(false);
 	}
+
 }
 
 
@@ -139,4 +142,12 @@ glm::vec3 Mesh::randomRGB() {
 	float b = dis(gen);
 
 	return glm::vec3(r, g, b);
+}
+
+void Mesh::updateFaceSelection(int face_index) {
+	if (face_index < 0 || face_index >= faces.size()) {
+		std::cerr << "Invalid face index: " << face_index << std::endl;
+		return;
+	}
+	face_is_selected[face_index] = !face_is_selected[face_index];
 }

@@ -80,4 +80,4 @@ public:
 		glBindTexture(GL_TEXTURE_CUBE_MAP, textureID);
 	}
 };
-#endif TEXTUREHANDLER_H
+#endif //TEXTUREHANDLER_H

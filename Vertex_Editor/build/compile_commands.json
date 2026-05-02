@@ -1,0 +1,80 @@
+[
+{
+  "directory": "/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build",
+  "command": "/usr/bin/g++ -DHEADER_DIR=\\\"../include\\\" -DIMGUI_IMPL_OPENGL_LOADER_GLAD -DROOT_DIR=\"\\\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/\\\"\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/include\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/OpenGL_include\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/OpenGL_include/glad/include\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/HEADER_DIR\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-src\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-src/backends\" -g -std=gnu++20 -o CMakeFiles/VertexEditor.dir/main.cpp.o -c \"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/main.cpp\"",
+  "file": "/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/main.cpp",
+  "output": "CMakeFiles/VertexEditor.dir/main.cpp.o"
+},
+{
+  "directory": "/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build",
+  "command": "/usr/bin/g++ -DHEADER_DIR=\\\"../include\\\" -DIMGUI_IMPL_OPENGL_LOADER_GLAD -DROOT_DIR=\"\\\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/\\\"\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/include\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/OpenGL_include\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/OpenGL_include/glad/include\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/HEADER_DIR\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-src\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-src/backends\" -g -std=gnu++20 -o CMakeFiles/VertexEditor.dir/src/CameraHandler.cpp.o -c \"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/src/CameraHandler.cpp\"",
+  "file": "/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/src/CameraHandler.cpp",
+  "output": "CMakeFiles/VertexEditor.dir/src/CameraHandler.cpp.o"
+},
+{
+  "directory": "/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build",
+  "command": "/usr/bin/g++ -DHEADER_DIR=\\\"../include\\\" -DIMGUI_IMPL_OPENGL_LOADER_GLAD -DROOT_DIR=\"\\\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/\\\"\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/include\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/OpenGL_include\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/OpenGL_include/glad/include\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/HEADER_DIR\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-src\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-src/backends\" -g -std=gnu++20 -o CMakeFiles/VertexEditor.dir/src/MainWindow.cpp.o -c \"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/src/MainWindow.cpp\"",
+  "file": "/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/src/MainWindow.cpp",
+  "output": "CMakeFiles/VertexEditor.dir/src/MainWindow.cpp.o"
+},
+{
+  "directory": "/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build",
+  "command": "/usr/bin/g++ -DHEADER_DIR=\\\"../include\\\" -DIMGUI_IMPL_OPENGL_LOADER_GLAD -DROOT_DIR=\"\\\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/\\\"\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/include\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/OpenGL_include\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/OpenGL_include/glad/include\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/HEADER_DIR\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-src\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-src/backends\" -g -std=gnu++20 -o CMakeFiles/VertexEditor.dir/src/Mesh.cpp.o -c \"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/src/Mesh.cpp\"",
+  "file": "/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/src/Mesh.cpp",
+  "output": "CMakeFiles/VertexEditor.dir/src/Mesh.cpp.o"
+},
+{
+  "directory": "/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build",
+  "command": "/usr/bin/g++ -DHEADER_DIR=\\\"../include\\\" -DIMGUI_IMPL_OPENGL_LOADER_GLAD -DROOT_DIR=\"\\\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/\\\"\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/include\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/OpenGL_include\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/OpenGL_include/glad/include\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/HEADER_DIR\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-src\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-src/backends\" -g -std=gnu++20 -o CMakeFiles/VertexEditor.dir/src/MouseHandling.cpp.o -c \"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/src/MouseHandling.cpp\"",
+  "file": "/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/src/MouseHandling.cpp",
+  "output": "CMakeFiles/VertexEditor.dir/src/MouseHandling.cpp.o"
+},
+{
+  "directory": "/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build",
+  "command": "/usr/bin/gcc -DHEADER_DIR=\\\"../include\\\" -DIMGUI_IMPL_OPENGL_LOADER_GLAD -DROOT_DIR=\"\\\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/\\\"\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/include\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/OpenGL_include\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/OpenGL_include/glad/include\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/HEADER_DIR\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-src\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-src/backends\" -g -o CMakeFiles/VertexEditor.dir/OpenGL_include/glad/src/glad.c.o -c \"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/OpenGL_include/glad/src/glad.c\"",
+  "file": "/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/OpenGL_include/glad/src/glad.c",
+  "output": "CMakeFiles/VertexEditor.dir/OpenGL_include/glad/src/glad.c.o"
+},
+{
+  "directory": "/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build",
+  "command": "/usr/bin/g++ -DHEADER_DIR=\\\"../include\\\" -DIMGUI_IMPL_OPENGL_LOADER_GLAD -DROOT_DIR=\"\\\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/\\\"\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/include\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/OpenGL_include\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/OpenGL_include/glad/include\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/HEADER_DIR\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-src\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-src/backends\" -g -std=gnu++20 -o CMakeFiles/VertexEditor.dir/_deps/imgui-src/imgui_demo.cpp.o -c \"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-src/imgui_demo.cpp\"",
+  "file": "/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-src/imgui_demo.cpp",
+  "output": "CMakeFiles/VertexEditor.dir/_deps/imgui-src/imgui_demo.cpp.o"
+},
+{
+  "directory": "/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build",
+  "command": "/usr/bin/g++ -DHEADER_DIR=\\\"../include\\\" -DIMGUI_IMPL_OPENGL_LOADER_GLAD -DROOT_DIR=\"\\\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/\\\"\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/include\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/OpenGL_include\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/OpenGL_include/glad/include\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/HEADER_DIR\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-src\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-src/backends\" -g -std=gnu++20 -o CMakeFiles/VertexEditor.dir/_deps/imgui-src/imgui.cpp.o -c \"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-src/imgui.cpp\"",
+  "file": "/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-src/imgui.cpp",
+  "output": "CMakeFiles/VertexEditor.dir/_deps/imgui-src/imgui.cpp.o"
+},
+{
+  "directory": "/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build",
+  "command": "/usr/bin/g++ -DHEADER_DIR=\\\"../include\\\" -DIMGUI_IMPL_OPENGL_LOADER_GLAD -DROOT_DIR=\"\\\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/\\\"\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/include\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/OpenGL_include\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/OpenGL_include/glad/include\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/HEADER_DIR\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-src\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-src/backends\" -g -std=gnu++20 -o CMakeFiles/VertexEditor.dir/_deps/imgui-src/imgui_draw.cpp.o -c \"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-src/imgui_draw.cpp\"",
+  "file": "/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-src/imgui_draw.cpp",
+  "output": "CMakeFiles/VertexEditor.dir/_deps/imgui-src/imgui_draw.cpp.o"
+},
+{
+  "directory": "/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build",
+  "command": "/usr/bin/g++ -DHEADER_DIR=\\\"../include\\\" -DIMGUI_IMPL_OPENGL_LOADER_GLAD -DROOT_DIR=\"\\\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/\\\"\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/include\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/OpenGL_include\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/OpenGL_include/glad/include\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/HEADER_DIR\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-src\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-src/backends\" -g -std=gnu++20 -o CMakeFiles/VertexEditor.dir/_deps/imgui-src/imgui_tables.cpp.o -c \"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-src/imgui_tables.cpp\"",
+  "file": "/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-src/imgui_tables.cpp",
+  "output": "CMakeFiles/VertexEditor.dir/_deps/imgui-src/imgui_tables.cpp.o"
+},
+{
+  "directory": "/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build",
+  "command": "/usr/bin/g++ -DHEADER_DIR=\\\"../include\\\" -DIMGUI_IMPL_OPENGL_LOADER_GLAD -DROOT_DIR=\"\\\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/\\\"\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/include\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/OpenGL_include\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/OpenGL_include/glad/include\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/HEADER_DIR\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-src\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-src/backends\" -g -std=gnu++20 -o CMakeFiles/VertexEditor.dir/_deps/imgui-src/imgui_widgets.cpp.o -c \"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-src/imgui_widgets.cpp\"",
+  "file": "/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-src/imgui_widgets.cpp",
+  "output": "CMakeFiles/VertexEditor.dir/_deps/imgui-src/imgui_widgets.cpp.o"
+},
+{
+  "directory": "/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build",
+  "command": "/usr/bin/g++ -DHEADER_DIR=\\\"../include\\\" -DIMGUI_IMPL_OPENGL_LOADER_GLAD -DROOT_DIR=\"\\\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/\\\"\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/include\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/OpenGL_include\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/OpenGL_include/glad/include\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/HEADER_DIR\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-src\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-src/backends\" -g -std=gnu++20 -o CMakeFiles/VertexEditor.dir/_deps/imgui-src/backends/imgui_impl_glfw.cpp.o -c \"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-src/backends/imgui_impl_glfw.cpp\"",
+  "file": "/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-src/backends/imgui_impl_glfw.cpp",
+  "output": "CMakeFiles/VertexEditor.dir/_deps/imgui-src/backends/imgui_impl_glfw.cpp.o"
+},
+{
+  "directory": "/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build",
+  "command": "/usr/bin/g++ -DHEADER_DIR=\\\"../include\\\" -DIMGUI_IMPL_OPENGL_LOADER_GLAD -DROOT_DIR=\"\\\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/\\\"\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/include\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/OpenGL_include\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/OpenGL_include/glad/include\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/HEADER_DIR\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-src\" -I\"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-src/backends\" -g -std=gnu++20 -o CMakeFiles/VertexEditor.dir/_deps/imgui-src/backends/imgui_impl_opengl3.cpp.o -c \"/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-src/backends/imgui_impl_opengl3.cpp\"",
+  "file": "/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/_deps/imgui-src/backends/imgui_impl_opengl3.cpp",
+  "output": "CMakeFiles/VertexEditor.dir/_deps/imgui-src/backends/imgui_impl_opengl3.cpp.o"
+}
+]

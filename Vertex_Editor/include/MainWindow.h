@@ -1,4 +1,3 @@
-//
 // Created by rodrigo on 30/04/2026.
 //
 
@@ -19,26 +18,42 @@ struct RenderInfo {
 	unsigned int VAO;
 	unsigned int VBO;
 	unsigned int EBO;
+
+	unsigned int SSBO;//sends the selected faces to the shader
 	glm::mat4 model;
 };
 
+struct FramebufferInfo {
+	unsigned int FBO;
+	unsigned int texture;
+	unsigned int DBO;
+};
 
 
 class MainWindow {
 public:
+	bool update_faces_selected=false;
+	bool SetupRun=false;
+	int width,height;
 	GLFWwindow *window;
-	Shader *shader;
+
+	FramebufferInfo color_picking_framebuffer_info;
+	Shader *shader,*color_picking_shader;
 	std::map<std::string,std::pair<Mesh*,RenderInfo*>> meshes;
 	glm::mat4 view;
 	glm::mat4 projection;
 	MainWindow(GLFWwindow *window) {
-		this->window=window;
+		this->window = window;
 	}
-	void use();
-	void mainRenderPass();
-	void colorIDPass();
-
-	void renderSetup();
+    void use();
+    void mainRenderPass();
+	void colorPickingPass();
+	void FramebufferSetup();
+	void meshRenderSetup();
+	unsigned int mouseDetection();//returns the ID of the clicked face, 0 if nothing was clicked
+	void setWindow(GLFWwindow *window) {
+		this->window = window;
+	}
 	void setViewMatrix(glm::mat4 viewm){
 		this->view = viewm;
 	}

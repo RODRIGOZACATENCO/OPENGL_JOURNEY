@@ -1,0 +1,19 @@
+# ninja log v7
+3	68	1777692724833512442	CMakeFiles/VertexEditor.dir/src/CameraHandler.cpp.o	22931a424ce65e31
+4	145	1777692724834099271	CMakeFiles/VertexEditor.dir/OpenGL_include/glad/src/glad.c.o	777c82c5f4826865
+4	575	1777692724833958161	CMakeFiles/VertexEditor.dir/src/MouseHandling.cpp.o	15aa5e5cdc6c781b
+3	1159	1777692724833659202	CMakeFiles/VertexEditor.dir/src/MainWindow.cpp.o	9e169319ebfe564
+2	1104	1777693044522829219	CMakeFiles/VertexEditor.dir/main.cpp.o	f1c723d5ebd9c57d
+3	1185	1777692724833810581	CMakeFiles/VertexEditor.dir/src/Mesh.cpp.o	f7bdbd3f0fa16610
+1088	1178	1777692804682977581	VertexEditor	7bcfd719c8761f76
+5	136	1777692724835132031	CMakeFiles/VertexEditor.dir/_deps/imgui-src/backends/imgui_impl_opengl3.cpp.o	82b48b30397acb10
+5	155	1777692724834948831	CMakeFiles/VertexEditor.dir/_deps/imgui-src/backends/imgui_impl_glfw.cpp.o	193ade5818ebd546
+4	902	1777692724834598521	CMakeFiles/VertexEditor.dir/_deps/imgui-src/imgui_tables.cpp.o	7728c1406c0f75b9
+4	1163	1777692724834421721	CMakeFiles/VertexEditor.dir/_deps/imgui-src/imgui_draw.cpp.o	19567cbe30bd4921
+4	1359	1777692724834766851	CMakeFiles/VertexEditor.dir/_deps/imgui-src/imgui_widgets.cpp.o	7ba823db983580c7
+4	1593	1777692724834253511	CMakeFiles/VertexEditor.dir/_deps/imgui-src/imgui.cpp.o	9709f52d61b47b07
+3	544	1777693174607322652	CMakeFiles/VertexEditor.dir/_deps/imgui-src/imgui_demo.cpp.o	aff12702b73ff44e
+3	1073	1777693174606748778	CMakeFiles/VertexEditor.dir/main.cpp.o	f1c723d5ebd9c57d
+1073	1164	1777693175676748116	VertexEditor	f7c1569ebca4d6d7
+3	1085	1777693257132697737	CMakeFiles/VertexEditor.dir/main.cpp.o	f1c723d5ebd9c57d
+1085	1178	1777693258214697068	VertexEditor	f7c1569ebca4d6d7
