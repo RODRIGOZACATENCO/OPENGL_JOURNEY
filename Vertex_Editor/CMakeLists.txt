@@ -14,7 +14,7 @@ FetchContent_MakeAvailable(imgui)
 
 # Set your shared includes
 set(SHARED_INCLUDE_DIR "OpenGL_include")
-SET(HEADER_DIR "../headers")
+set(1 "${CMAKE_CURRENT_SOURCE_DIR}/include")
 file(GLOB_RECURSE SOURCES "src/*.cpp")
 
 add_executable(${PROJECT_NAME}
@@ -24,11 +24,9 @@ add_executable(${PROJECT_NAME}
         src/CameraHandler.cpp
         include/Mesh.h
         include/MainWindow.h
-        include/MouseHandling.h
+
         OpenGL_include/ShaderHandler.h
         src/Mesh.cpp
-        src/MouseHandling.cpp
-
         src/MainWindow.cpp
 
 )
@@ -36,7 +34,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE
         include
         ${SHARED_INCLUDE_DIR}
         "${SHARED_INCLUDE_DIR}/glad/include"
-        HEADER_DIR
+        ${HEADER_DIR}
 )
 
 # Find ALL your global libraries|

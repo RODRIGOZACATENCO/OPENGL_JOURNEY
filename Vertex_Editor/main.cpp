@@ -9,171 +9,207 @@
 #include "ShaderHandler.h"
 #include "TextureHandler.h"
 
-#include "../include/Mesh.h"
+#include "Mesh.h"
+#include "GUI.h"
 #include "imgui.h"
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
-std::vector<float> triangle_vertices{
-	-1,-1,-1,//bottom left back 0
-	-1,-1, 1,//bottom left front 1
-	 1,-1,-1,//bottom right back 2
-	 1,-1, 1,//bottom right front 3
-	-1, 1,-1,//top left back 4
-	-1, 1, 1,//top left front 5
-	 1, 1,-1,//top right back 6
-	 1, 1, 1,//top right front 7
 
+
+
+
+std::vector<float> cube_vertices = {
+    -1, -1, -1, // 0 bottom left back
+    -1, -1,  1, // 1 bottom left front
+     1, -1, -1, // 2 bottom right back
+     1, -1,  1, // 3 bottom right front
+    -1,  1, -1, // 4 top left back
+    -1,  1,  1, // 5 top left front
+     1,  1, -1, // 6 top right back
+     1,  1,  1, // 7 top right front
 };
-/*
-std::vector<int> faces={
-	// Bottom Face
-	0, 2, 1,
-	1, 2, 3,
 
-	// Back Face
-	0, 4, 2,
-	2, 4, 6,
-
-	// Right Face
-	2, 6, 3,
-	3, 6, 7,
-
-	// Front Face
-	1, 3, 5,
-	3, 7, 5,
-
-	// Top Face
-	5, 7, 4,
-	6, 4, 7,
-
-	// Left Face
-	0, 1, 4,
-	5, 4, 1
+std::vector<int> faces = {
+    0, 2, 1,  1, 2, 3, // Bottom
+    0, 4, 2,  2, 4, 6, // Back
+    2, 6, 3,  3, 6, 7, // Right
+    1, 3, 5,  3, 7, 5, // Front
+    5, 7, 4,  6, 4, 7, // Top
+    0, 1, 4,  5, 4, 1, // Left
 };
-*/
-std::vector<int> faces={
-	// Bottom Face
-	0, 2, 1,
-	1, 2, 3,
-
-	// Back Face
-	0, 4, 2,
-	2, 4, 6,
-
-	// Right Face
-	2, 6, 3,
-	3, 6, 7,
-
-	// Front Face
-	1, 3, 5,
-	3, 7, 5,
-
-	// Top Face
-	5, 7, 4,
-	6, 4, 7,
-
-	// Left Face
-	0, 1, 4,
-	5, 4, 1
+std::vector<float> piramid_vertices = {
+    -1, -1, -1, // 0 bottom left back
+    -1, -1,  1, // 1 bottom left front
+     1, -1, -1, // 2 bottom right back
+     1, -1,  1, // 3 bottom right front
+     0,  1,  0, // 4 apex
 };
-bool use_main_buffer=true;
-Mesh mesh(&triangle_vertices,&faces);
+
+std::vector<int> piramid_faces = {
+    0, 2, 1,  1, 2, 3, // Bottom
+    0, 1, 4,            // Left
+    1, 3, 4,            // Front
+    3, 2, 4,            // Right
+    2, 0, 4,            // Back
+};
+
+bool use_main_buffer = true;
+Mesh mesh1(&cube_vertices, &faces);
+Mesh mesh2(&piramid_vertices, &piramid_faces);
+Mesh mesh3(&piramid_vertices, &piramid_faces);
+GUI gui;
 MainWindow main_window(nullptr);
-void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
-    glViewport(0, 0, width, height);
 
+
+void framebuffer_size_callback(GLFWwindow *window, int width, int height)
+{
+	glViewport(0, 0, width, height);
+	main_window.resizeFramebuffer(width, height);
 }
-void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
-	if (key == GLFW_KEY_P && action == GLFW_PRESS) {
+void key_callback(GLFWwindow *window, int key, int scancode, int action, int mods)
+{
+	if (key == GLFW_KEY_P && action == GLFW_PRESS)
+	{
 		use_main_buffer = !use_main_buffer;
 	}
 }
 
-void processInput(GLFWwindow* window) {
+void processInput(GLFWwindow *window)
+{
 
-	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
+	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+	{
 		glfwSetWindowShouldClose(window, GLFW_TRUE);
 	}
 }
-void mouseCallback(GLFWwindow* window,int button,int action,int mods) {
-	if (button==GLFW_MOUSE_BUTTON_LEFT && action==GLFW_PRESS) {
-		if(main_window.mouseDetection()){
-			std::cout<<"Face "<<main_window.mouseDetection()<<" clicked!"<<std::endl;
-			mesh.updateFaceSelection(main_window.mouseDetection()-1);
-			main_window.update_faces_selected = true;//sets a flag on the main window to update the selected faces on the shader
-		}
-		else {
-			std::cout<<"No face clicked!"<<std::endl;
-		}
-	}
-
-}
+void mainWindowMouseCallback(GLFWwindow *window, int button, int action, int mods);
 
 
-int main() {
+static bool isToggled = false;
+//@TODO: add mesh detection on the shader - working 
+
+int main()
+{
 	// GLFW Init
-	if (!glfwInit()) return -1;
+	if (!glfwInit())
+		return -1;
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-	GLFWwindow* window = glfwCreateWindow(800, 600, "VertexEditor", nullptr, nullptr);
-	if (window == nullptr) {
+	GLFWwindow *window = glfwCreateWindow(1200, 800, "VertexEditor", nullptr, nullptr);
+	if (window == nullptr)
+	{
 		std::cout << "Failed to create GLFW window" << std::endl;
 		glfwTerminate();
 		return -1;
 	}
 	glfwMakeContextCurrent(window);
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+
 	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 	// GLAD Init
-	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
+	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+	{
 		std::cout << "Failed to initialize GLAD" << std::endl;
 		return -1;
 	}
 
+	glfwSetKeyCallback(window, key_callback);
+	glfwSetMouseButtonCallback(window, mainWindowMouseCallback);
+
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
-	ImGuiIO& io = ImGui::GetIO(); (void)io;
+	ImGuiIO &io = ImGui::GetIO();
+	(void)io;
 	ImGui::StyleColorsDark();
 	ImGui_ImplGlfw_InitForOpenGL(window, true);
 	ImGui_ImplOpenGL3_Init("#version 460 core");
 
-	int frameBufferWidth = 800;
-	int frameBufferHeight = 600;
-	glfwGetFramebufferSize(window,&frameBufferWidth,&frameBufferHeight);
-	glViewport(0,0,frameBufferWidth,frameBufferHeight);
-	
-	std::vector<glm::vec3> colors;
-	main_window.setWindow(window);
+	int frameBufferWidth = 1200;
+	int frameBufferHeight = 800;
+	glfwGetFramebufferSize(window, &frameBufferWidth, &frameBufferHeight);
+	glViewport(0, 0, frameBufferWidth, frameBufferHeight);
 
-	glm::mat4 view=glm::lookAt(glm::vec3(0,0,3),glm::vec3(0,0,0),glm::vec3(0,1,0));
-	glm::mat4 projection=glm::perspective(glm::radians(45.0f),(float)frameBufferWidth/(float)frameBufferHeight,0.1f,100.0f);
-	main_window.addMesh(&mesh,"cube",glm::mat4(1.0f));
+	main_window.setWindow(window);
+	main_window.setGui(&gui);
+
+	glm::mat4 view = glm::lookAt(glm::vec3(0, 0, 3), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
+	glm::mat4 projection = glm::perspective(glm::radians(45.0f), (float)frameBufferWidth / (float)frameBufferHeight, 0.1f, 100.0f);
+	main_window.addMesh(&mesh1, "cube", glm::mat4(1.0f));
+	main_window.addMesh(&mesh2, "pyramid", glm::mat4(1.0f));
+	main_window.addMesh(&mesh3, "pyramid2", glm::mat4(1.0f));
 
 	main_window.setViewMatrix(view);
+
+
 	main_window.setProjectionMatrix(projection);
-	glfwSetKeyCallback(window, key_callback);
-	glfwSetMouseButtonCallback(window, mouseCallback);
 
-    while (!glfwWindowShouldClose(window)) {
+	ImGui::SetNextWindowPos(ImVec2(20, 20), ImGuiCond_FirstUseEver);
+	ImGui::SetNextWindowSize(ImVec2(200, 100), ImGuiCond_FirstUseEver);
 
-		glm::mat4 model=glm::mat4(1.0f);
-		model=glm::translate(model,glm::vec3(0,0,-2));
-		model=glm::scale(model,glm::vec3(0.7f));
-		//model=glm::rotate(model,(float)glfwGetTime(),glm::vec3(1,1,0));
-		model=glm::rotate(model,(float)glfwGetTime(),glm::vec3(0.3,0.7,0));
-		main_window.setModelMatrix("cube",model);
+	gui.main_state.isFaceSelectionActive = true; // sets the initial state of the face selection button to active
+	while (!glfwWindowShouldClose(window))
+	{
+		processInput(window);
+		glfwPollEvents();
+
+		glm::mat4 model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(1, 0, -2));
+		model = glm::scale(model, glm::vec3(0.7f));
+
+		model = glm::rotate(model, (float)glfwGetTime(), glm::vec3(0.3, 0.7, 0));
+		main_window.setModelMatrix("cube", model);
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-1, 0, -2));
+		model = glm::scale(model, glm::vec3(0.7f));
+
+		model = glm::rotate(model, -(float)glfwGetTime(), glm::vec3(0.3, 0.7, 0));
+		main_window.setModelMatrix("pyramid", model);
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(0, 1, -6));
+		model = glm::scale(model, glm::vec3(0.7f));
+		model = glm::rotate(model, -(float)glfwGetTime(), glm::vec3(0.3, 0.7, 1));
+		main_window.setModelMatrix("pyramid2", model);
+
+		ImGui_ImplOpenGL3_NewFrame();
+		ImGui_ImplGlfw_NewFrame();
+		ImGui::NewFrame();
 		main_window.use();
 
-		processInput(window);
-		glfwSwapBuffers(window);
-		glfwPollEvents();
-    }
 
+		gui.showMainWindowGUI();
+		
+		glfwSwapBuffers(window);
+	}
 	ImGui_ImplOpenGL3_Shutdown();
 	ImGui_ImplGlfw_Shutdown();
 	ImGui::DestroyContext();
-    glfwTerminate();
-    return 0;
+	glfwTerminate();
+	//Cleanup all buffers and shaders
+	main_window.cleanup();
+	return 0;
+}
+
+void mainWindowMouseCallback(GLFWwindow *window, int button, int action, int mods)
+{
+	ImGuiIO &io = ImGui::GetIO();
+	if (io.WantCaptureMouse)
+		return;
+
+	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
+	{
+		auto [face_id, mesh_id, _] = main_window.faceDetection();
+		std::cout << "Clicked on face ID: " << face_id<< " of mesh ID: " << mesh_id << std::endl;
+		if (face_id+1)
+		{
+			main_window.updateFacesSelected(face_id, mesh_id);
+		}
+		else
+		{
+			std::cout << "Clicked on empty space" << std::endl;
+		}
+	}
 }

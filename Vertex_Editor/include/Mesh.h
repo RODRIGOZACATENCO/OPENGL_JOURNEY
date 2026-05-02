@@ -1,4 +1,4 @@
-//
+ //
 // Created by rodrigo on 27/04/2026.
 //
 
@@ -10,6 +10,13 @@
 #include<vector>
 #include<deque>
 #include "ShaderHandler.h"
+struct RenderInfo {
+	unsigned int VAO;
+	unsigned int VBO;
+	unsigned int EBO;
+
+	glm::mat4 model;
+};
 
 
 struct HalfEdge;
@@ -36,14 +43,13 @@ struct HalfEdge {
 };
 class Mesh {
 public:
+	RenderInfo render_info;
 	std::vector<HalfEdge> half_edges;
 	std::vector<Face> faces;
 	std::vector<Vertex> vertices;
 	std::vector<Edge> edges;
 	std::map<std::pair<int,int>,int> edge_lookup;
 	std::vector<unsigned int>render_indices;
-	std::vector<int> face_is_selected;
-
 	void process_mesh(std::vector<float>*vertices, std::vector<int>*faces);
 	void show_mesh_structure();
 

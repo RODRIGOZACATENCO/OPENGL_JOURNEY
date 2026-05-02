@@ -3,6 +3,6 @@
 //
 #include "CameraHandler.h"
 #include <GLFW/glfw3.h>
-void cameraHandler(GLFWwindow *window) {
-
+void cameraHandler(GLFWwindow *window)
+{
 }
