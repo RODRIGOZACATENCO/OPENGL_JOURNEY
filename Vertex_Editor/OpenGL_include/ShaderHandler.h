@@ -100,7 +100,7 @@ public:
         glDeleteShader(fragment);
     }
 
-    Shader(const char *vertexPath, const char *fragmentPath, const char *geometryPath)
+    Shader(const char *vertexPath, const char *geometryPath,const char *fragmentPath)
     {
 
         std::string vertexCode;

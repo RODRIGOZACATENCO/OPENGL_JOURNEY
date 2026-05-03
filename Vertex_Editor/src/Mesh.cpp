@@ -106,28 +106,36 @@ void Mesh::show_mesh_structure() {
 			halfedge_index=half_edge.next;
 		}
 	}
-	for (auto index:render_indices) {
+	for (auto index:face_render_indices) {
 		std::cout<<index<<" ";
 	}
 }
 
 
-void Mesh::setupRenderIndices() {
+void Mesh::setuFaceRenderIndices() {
 	//need to extract the order in witch to draw the triangles
-	render_indices.clear();
+	face_render_indices.clear();
 	for (auto face:faces) {
 		//for each face, extract the 3 vertices that form it
 		int halfedge_index=face.halfedge;
 		for (int i=0;i<3;i++) {
-			render_indices.push_back(half_edges[halfedge_index].vertex);
+			face_render_indices.push_back(half_edges[halfedge_index].vertex);
 			halfedge_index=half_edges[halfedge_index].next;
 		}
 	}
 
 }
 
-
-
+void Mesh::setupEdgeRenderIndices() {
+	edge_render_indices.clear();
+	for (auto edge:edges) {
+		int halfedge_index=edge.halfedge;
+		edge_render_indices.push_back(half_edges[halfedge_index].vertex);
+		edge_render_indices.push_back(half_edges[half_edges[halfedge_index].next].vertex);
+	}
+	for(auto i:edge_render_indices)std::cout<<i<<" ";
+	std::cout<<std::endl;
+}
 glm::vec3 Mesh::randomRGB() {
 	// 1. Set up the random number generator (do this statically so it's only seeded once)
 	static std::random_device rd;  // Hardware seed

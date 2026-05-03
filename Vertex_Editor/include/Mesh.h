@@ -10,13 +10,7 @@
 #include<vector>
 #include<deque>
 #include "ShaderHandler.h"
-struct RenderInfo {
-	unsigned int VAO;
-	unsigned int VBO;
-	unsigned int EBO;
 
-	glm::mat4 model;
-};
 
 
 struct HalfEdge;
@@ -43,24 +37,29 @@ struct HalfEdge {
 };
 class Mesh {
 public:
-	RenderInfo render_info;
 	std::vector<HalfEdge> half_edges;
 	std::vector<Face> faces;
 	std::vector<Vertex> vertices;
 	std::vector<Edge> edges;
-	std::map<std::pair<int,int>,int> edge_lookup;
-	std::vector<unsigned int>render_indices;
+	std::map<std::pair<int,int>,int> edge_lookup;//maps a pair of vertex indices to the edge index, used to find twin half edges	
+	std::vector<unsigned int>face_render_indices;//list of vertex indices in the order they should be rendered to form the faces
+
+	std::vector<unsigned int>edge_render_indices;//list of vertex indices in the order they should be rendered to form the edges
+
 	void process_mesh(std::vector<float>*vertices, std::vector<int>*faces);
 	void show_mesh_structure();
 
 	Mesh(std::vector<float>*vertices, std::vector<int>*faces){
 		process_mesh(vertices, faces);
-		setupRenderIndices();
+		setuFaceRenderIndices();
+		setupEdgeRenderIndices();
 	}
 	void updateFaceSelection(int face_index);
+	void setuFaceRenderIndices();
+	void setupEdgeRenderIndices();
 
 private:
-	void setupRenderIndices();
+
 	std::vector<glm::vec3> colors;
 	glm::vec3 randomRGB();
 };

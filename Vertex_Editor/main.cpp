@@ -17,7 +17,6 @@
 
 
 
-
 std::vector<float> cube_vertices = {
     -1, -1, -1, // 0 bottom left back
     -1, -1,  1, // 1 bottom left front
@@ -87,6 +86,7 @@ void mainWindowMouseCallback(GLFWwindow *window, int button, int action, int mod
 
 int main()
 {
+	std::cout<<ROOT_DIR;
 	// GLFW Init
 	if (!glfwInit())
 		return -1;
@@ -143,13 +143,14 @@ int main()
 	main_window.setProjectionMatrix(projection);
 
 	ImGui::SetNextWindowPos(ImVec2(20, 20), ImGuiCond_FirstUseEver);
-	ImGui::SetNextWindowSize(ImVec2(200, 100), ImGuiCond_FirstUseEver);
+	ImGui::SetNextWindowSize(ImVec2(300, 300), ImGuiCond_FirstUseEver);
 
-	gui.main_state.isFaceSelectionActive = true; // sets the initial state of the face selection button to active
+	gui.main_state.isEdgeSelectionActive = true; // sets the initial state of the face selection button to active
+	gui.currentState=EDGE_EDITING;
 	while (!glfwWindowShouldClose(window))
 	{
 		processInput(window);
-		glfwPollEvents();
+
 
 		glm::mat4 model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(1, 0, -2));
@@ -178,7 +179,7 @@ int main()
 
 
 		gui.showMainWindowGUI();
-		
+		glfwPollEvents();
 		glfwSwapBuffers(window);
 	}
 	ImGui_ImplOpenGL3_Shutdown();
@@ -193,20 +194,34 @@ int main()
 void mainWindowMouseCallback(GLFWwindow *window, int button, int action, int mods)
 {
 	ImGuiIO &io = ImGui::GetIO();
-	if (io.WantCaptureMouse)
-		return;
-
+	if (io.WantCaptureMouse) return;
 	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
 	{
-		auto [face_id, mesh_id, _] = main_window.faceDetection();
-		std::cout << "Clicked on face ID: " << face_id<< " of mesh ID: " << mesh_id << std::endl;
-		if (face_id+1)
+		main_window.selectionBufferPass();
+		auto result = main_window.faceDetection();
+		if (result)
 		{
-			main_window.updateFacesSelected(face_id, mesh_id);
+			auto [clicked_ID, mesh_id, empty] = *result;
+
+
+		switch (gui.currentState)
+		{
+		case FACE_EDITING: 
+			std::cout << "Clicked on face ID: " << clicked_ID << " of mesh ID: " << mesh_id << std::endl;
+			main_window.updateFacesSelected(clicked_ID, mesh_id);
+			break;
+
+		case VERTEX_EDITING:
+			std::cout << "Clicked on vertex ID: " << clicked_ID << " of mesh ID: " << mesh_id << std::endl;
+			main_window.updateVerticesSelected(clicked_ID, mesh_id);
+			break;
+		case EDGE_EDITING:
+			std::cout << "Clicked on edge ID: " << clicked_ID << " of mesh ID: " << mesh_id << std::endl;
+			main_window.updateEdgesSelected(clicked_ID, mesh_id);
+			break;
+		}
 		}
 		else
-		{
 			std::cout << "Clicked on empty space" << std::endl;
-		}
 	}
 }

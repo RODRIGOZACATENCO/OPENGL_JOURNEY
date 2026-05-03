@@ -7,9 +7,9 @@
 #include "ShaderHandler.h"
 enum GUIState
 {
-	FACE_EDITING,
-	VERTEX_EDITING,
-	EDGE_EDITING
+	FACE_EDITING=1,
+	VERTEX_EDITING=2,
+	EDGE_EDITING=3
 	
 };
 struct MainGUI_state
@@ -23,6 +23,7 @@ class GUI{
 
 public:
 	unsigned int currentState=FACE_EDITING;
+	unsigned int reset_selection_buffer_flag=0;//flag to reset the selection buffer on the GPU when the clear button is pressed
 	MainGUI_state main_state;
 	void showMainWindowGUI();
 
