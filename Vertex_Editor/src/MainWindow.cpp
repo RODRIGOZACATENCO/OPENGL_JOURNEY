@@ -8,7 +8,7 @@
 #include "../include/MainWindow.h"
 
 #include <GLFW/glfw3.h>
-#include "MainWindow.h"
+
 #include <random>
 #include <imgui.h>
 
@@ -88,7 +88,7 @@ std::pair<int,int> MainWindow::getCursorPositionInViewport(GLFWwindow *window) {
 	glfwGetFramebufferSize(window, &framebuffer_width, &framebuffer_height);
 	// convert mouse coordinates to framebuffer coordinates
 	int framebuffer_x = mouse_x * (framebuffer_width / (double)width);
-	int framebuffer_y = (framebuffer_height - mouse_y) * (framebuffer_height / (double)height);
+	int framebuffer_y = (height - mouse_y) * (framebuffer_height / (double)height);
 	return {framebuffer_x, framebuffer_y};
 	}
 
@@ -221,7 +221,7 @@ void MainWindow::FramebufferSetup()
 void MainWindow::resizeFramebuffer(int width, int height)
 {
 	glBindTexture(GL_TEXTURE_2D, color_picking_framebuffer_info.texture);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_R32UI, width, height, 0, GL_RED_INTEGER, GL_UNSIGNED_INT, nullptr);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB32UI, width, height, 0, GL_RGB_INTEGER, GL_UNSIGNED_INT, nullptr);
 	glBindTexture(GL_TEXTURE_2D, 0); // Unbind when done
 
 	// 2. Bind and resize the depth renderbuffer attachment

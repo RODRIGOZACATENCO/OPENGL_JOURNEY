@@ -85,9 +85,6 @@ void processInput(GLFWwindow *window)
 void mainWindowMouseCallback(GLFWwindow *window, int button, int action, int mods);
 
 
-static bool isToggled = false;
-//@TODO: add mesh detection on the shader - working 
-
 int main()
 {
 	// GLFW Init

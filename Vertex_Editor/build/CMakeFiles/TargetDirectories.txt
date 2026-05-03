@@ -1,3 +1,0 @@
-/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/CMakeFiles/VertexEditor.dir
-/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/CMakeFiles/edit_cache.dir
-/home/rodrigoz/CLionProjects/New Folder/OPENGL_JOURNEY/Vertex_Editor/build/CMakeFiles/rebuild_cache.dir

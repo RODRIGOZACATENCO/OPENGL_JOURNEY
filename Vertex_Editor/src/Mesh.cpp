@@ -5,6 +5,7 @@
 #include<Mesh.h>
 #include <iostream>
 #include <random>
+#include <ranges>
 #include<glm/glm.hpp>
 
 #include "ShaderHandler.h"
@@ -61,7 +62,7 @@ void Mesh::process_mesh(std::vector<float> *input_vertices, std::vector<int> *in
 			int current_vertex=vertex_indices[j], next_vertex=vertex_indices[(j+1)%3];
 			//twin exists, csecond=model;heck if there's an edge already in the opposite direction
 			//if it exists ,it's halfedge must be the twin half edge
-			if (edge_lookup.find({next_vertex,current_vertex})!=edge_lookup.end()) {
+			if (edge_lookup.contains({next_vertex,current_vertex})) {
 
 				int twin_halfedge_index=edges[edge_lookup.at({next_vertex,current_vertex})].halfedge;//twin_index on main edge vector
 				half_edges[current_halfedge_index+j].twin=twin_halfedge_index;//assign twin to halfedge
@@ -86,8 +87,8 @@ void Mesh::process_mesh(std::vector<float> *input_vertices, std::vector<int> *in
 void Mesh::show_mesh_structure() {
 	std::cout<<"EDGES: "<<edges.size()<<std::endl;
 	int i=0;
-	for (auto &element:edge_lookup) {
-		std::cout<<"edge :"<<i++<<"  "<<element.first.first<<"-->"<<element.first.second<<std::endl;
+	for (const auto &key: edge_lookup | std::views::keys) {
+		std::cout<<"edge :"<<i++<<"  "<<key.first<<"-->"<<key.second<<std::endl;
 	}
 	std::cout<<std::endl<<std::endl;
 	for (int i =0;i<faces.size();i++) {
