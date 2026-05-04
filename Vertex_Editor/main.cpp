@@ -147,6 +147,8 @@ int main()
 
 	gui.main_state.isEdgeSelectionActive = true; // sets the initial state of the face selection button to active
 	gui.currentState=EDGE_EDITING;
+	//@TODO element detection does not account for faces that we cant see on the viewport
+	//@TODO change the way the detection pass renders its color to account for this
 	while (!glfwWindowShouldClose(window))
 	{
 		processInput(window);
@@ -156,20 +158,20 @@ int main()
 		model = glm::translate(model, glm::vec3(1, 0, -2));
 		model = glm::scale(model, glm::vec3(0.7f));
 
-		model = glm::rotate(model, (float)glfwGetTime(), glm::vec3(0.3, 0.7, 0));
+		//model = glm::rotate(model, (float)glfwGetTime(), glm::vec3(0.3, 0.7, 0));
 		main_window.setModelMatrix("cube", model);
 
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(-1, 0, -2));
 		model = glm::scale(model, glm::vec3(0.7f));
 
-		model = glm::rotate(model, -(float)glfwGetTime(), glm::vec3(0.3, 0.7, 0));
+		//model = glm::rotate(model, -(float)glfwGetTime(), glm::vec3(0.3, 0.7, 0));
 		main_window.setModelMatrix("pyramid", model);
 
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(0, 1, -6));
 		model = glm::scale(model, glm::vec3(0.7f));
-		model = glm::rotate(model, -(float)glfwGetTime(), glm::vec3(0.3, 0.7, 1));
+		//model = glm::rotate(model, -(float)glfwGetTime(), glm::vec3(0.3, 0.7, 1));
 		main_window.setModelMatrix("pyramid2", model);
 
 		ImGui_ImplOpenGL3_NewFrame();

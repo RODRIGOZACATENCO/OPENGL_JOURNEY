@@ -28,6 +28,8 @@ add_executable(${PROJECT_NAME}
         OpenGL_include/ShaderHandler.h
         src/Mesh.cpp
         src/MainWindow.cpp
+        src/Scene.cpp
+        include/Scene.h
 
 )
 target_include_directories(${PROJECT_NAME} PRIVATE

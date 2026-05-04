@@ -198,14 +198,17 @@ void MainWindow::mainRenderPass()
 			vertex_offset += mesh->vertices.size();
 			glDrawArrays(GL_POINTS, 0,mesh->vertices.size());
 		}
+		/*
 		if (gui->currentState == EDGE_EDITING)
 		{
+			glDisable(GL_CULL_FACE);
 			main_pass_edge_shader->use();
 			main_pass_edge_shader->setMat4("model", ri->model);
 			main_pass_edge_shader->setInt("num_vertices_offset", vertex_offset);
 			edges_offset += mesh->edges.size();
 			glDrawElements(GL_LINES, mesh->edge_render_indices.size(), GL_UNSIGNED_INT, 0);
 		}
+		*/
 		glBindVertexArray(0);
 	}
 }
@@ -215,7 +218,6 @@ void MainWindow::selectionBufferPass()
 	glfwGetFramebufferSize(window, &width, &height);
 	glViewport(0, 0, width, height);
 	glBindFramebuffer(GL_FRAMEBUFFER, color_picking_framebuffer_info.FBO);
-
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glEnable(GL_DEPTH_TEST);
