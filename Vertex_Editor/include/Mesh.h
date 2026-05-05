@@ -8,7 +8,6 @@
 #include <map>
 #include<glm/glm.hpp>
 #include<vector>
-#include<deque>
 #include "ShaderHandler.h"
 
 
@@ -28,7 +27,7 @@ struct Face {
 };
 
 struct HalfEdge {
-	int next;//next half edge
+	int next;//next half-edge
 	int prev;//previous half edge
 	int twin;//reversed half edge
 	int vertex;
@@ -41,7 +40,7 @@ public:
 	std::vector<Face> faces;
 	std::vector<Vertex> vertices;
 	std::vector<Edge> edges;
-	std::map<std::pair<int,int>,int> edge_lookup;//maps a pair of vertex indices to the edge index, used to find twin half edges	
+	std::map<std::pair<int,int>,int> edge_lookup;//maps a pair of vertex indices to the edge index, used to find twin half-edges
 	std::vector<unsigned int>face_render_indices;//list of vertex indices in the order they should be rendered to form the faces
 
 	std::vector<unsigned int>edge_render_indices;//list of vertex indices in the order they should be rendered to form the edges
@@ -54,7 +53,6 @@ public:
 		setuFaceRenderIndices();
 		setupEdgeRenderIndices();
 	}
-	void updateFaceSelection(int face_index);
 	void setuFaceRenderIndices();
 	void setupEdgeRenderIndices();
 

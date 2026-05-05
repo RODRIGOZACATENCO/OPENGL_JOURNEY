@@ -7,112 +7,128 @@
 
 #include "Mesh.h"
 #include "GUI.h"
+#include "Renderer.h"
+#include "Scene.h"
+#include <memory>
 
+inline std::vector<float> cube_vertices = {
+	-1, -1, -1, // 0 bottom left back
+	-1, -1,  1, // 1 bottom left front
+	 1, -1, -1, // 2 bottom right back
+	 1, -1,  1, // 3 bottom right front
+	-1,  1, -1, // 4 top left back
+	-1,  1,  1, // 5 top left front
+	 1,  1, -1, // 6 top right back
+	 1,  1,  1, // 7 top right front
+};
+
+inline std::vector<int> faces = {
+	0, 2, 1,  1, 2, 3, // Bottom
+	0, 4, 2,  2, 4, 6, // Back
+	2, 6, 3,  3, 6, 7, // Right
+	1, 3, 5,  3, 7, 5, // Front
+	5, 7, 4,  6, 4, 7, // Top
+	0, 1, 4,  5, 4, 1, // Left
+};
+inline std::vector<float> piramid_vertices = {
+	-1, -1, -1, // 0 bottom left back
+	-1, -1,  1, // 1 bottom left front
+	 1, -1, -1, // 2 bottom right back
+	 1, -1,  1, // 3 bottom right front
+	 0,  1,  0, // 4 apex
+};
+
+inline std::vector<int> piramid_faces = {
+	0, 2, 1,  1, 2, 3, // Bottom
+	0, 1, 4,            // Left
+	1, 3, 4,            // Front
+	3, 2, 4,            // Right
+	2, 0, 4,            // Back
+};
 /*vertex editor main window
  *render pass that shows  the object
  *color picking pass that renders color ID's
- *gimball camera that rotates around the object
+ *gimball camera that rotates around the object-MISSING
  *soft simple lighting around the object
 */
-struct RenderInfo
-{
-	unsigned int VAO;
-	unsigned int VBO;
-	unsigned int EBO;
-	unsigned int edge_VAO;
-	unsigned int edge_EBO;
 
-	glm::mat4 model;
-};
-
-struct FramebufferInfo {
-	unsigned int FBO;
-	unsigned int texture;
-	unsigned int DBO;
-};
-
+/*Main window handles the interface between the gui and the user input
+ *activates the correct renders, etc
+ */
 
 class MainWindow {
 public:
-	MainWindow(GLFWwindow *window) {
-		this->window = window;
-	}
-	unsigned int SSBO;//buffer to send the selected faces to the shader
+	bool isWindowReady(std::string* out_error = nullptr) const;
 
-	unsigned int total_meshes=0;
-	uint update_selected_buffer=0;//flag to update the selected buffer on the GPU when a new face is selected or deselected
-	bool is_window_ready=false;//flag to run the setup only once
+	MainWindow(GLFWwindow *window) {
+		glfwGetFramebufferSize(window,&width,&height);
+		this->window = window;
+
+		Mesh *cube=new Mesh(&cube_vertices,&faces);
+		//starts with a default scene
+		glm::mat4 view=glm::lookAt(glm::vec3(0,1,5),glm::vec3(0,0,0),glm::vec3(0,1,0));
+		glm::mat4 projection=glm::perspective(glm::radians(45.0f),(float)width/(float)height,0.1f,100.0f);
+		auto default_scene=std::make_unique<Scene>(view,projection);//intialize the default scene
+		default_scene->addMesh(cube,"cube",glm::mat4(1.0f));
+
+		gui= GUI();//creates the main window gui
+		gui.main_state.isEdgeSelectionActive = true; // sets the initial state of the face selection button to active
+		gui.currentState=FACE_EDITING;
+		renderer=std::make_unique<Renderer>(window);
+		scene_name_to_scene_object["default"]=std::move(default_scene);
+		std::string error;
+
+		renderer->setCurrentScene(default_scene.get());
+		renderer->setScreenSize(width,height);
+		renderer->setRenderMode(FACE_EDITING);
+
+
+
+		glfwSetWindowUserPointer(window, this);
+		glfwSetMouseButtonCallback(window,mainWindowMouseCallback);
+		glfwSetFramebufferSizeCallback(window,framebufferSizeCallback);
+
+	}
+
+	static void mainWindowMouseCallback(GLFWwindow *window, int button, int action, int mods);
+	void onMouseButton(int button, int action, int mods);
+	static void framebufferSizeCallback(GLFWwindow *window, int width, int height);
+	void onFramebufferSize();
+	void use(std::string *scene_name=nullptr);
+
+	void updateModelMatrices(std::vector<std::pair<Mesh*,glm::mat4>>*updated_matrices );//updates model matrices for the next render pass
+
+	bool has_scene_changed=false;//@TODO use later to detect swaps in the scenes, and set up the next scene to rende
 	int width,height;//window dimensions
 	GLFWwindow *window;
-	GUI *gui;
-	FramebufferInfo color_picking_framebuffer_info;//framebuffer for color picking pass
+	GUI gui;
 
+	std::optional<std::tuple<unsigned int,unsigned int,unsigned int> >faceDetection();
+	std::pair<int, int> getCursorPositionInViewport(GLFWwindow *window);
 
-
-	Shader *main_shader,*color_picking_shader;//shaders for the main render pass and the color picking pass
-	Shader *vertex_pass_shader, *edge_pass_shader;//shader for the vertex selection pass
-	Shader *main_pass_edge_shader;
-	std::map<Mesh*,RenderInfo> mesh_to_render_info;//maps each mesh to its render info (VAO,VBO,EBO,model matrix)
-	std::map<std::string,unsigned int> mesh_name_to_id;//maps the mesh ID used in the color picking pass to the mesh name used in the main render pass
-	std::vector<Mesh*> meshes;
-	std::vector<int> face_selection_array;//list of all selected faces IDs in order 
-	std::vector<int> vertex_selection_array;//list of all selected vertex IDs in order
-	std::vector<int> edge_selection_array;//list of all selected edge IDs in order
-	void setupSelectionArrays(Mesh* mesh); 
-
-	glm::mat4 view;
-	glm::mat4 projection;
-
-
-    void use();
-    std::pair<int, int> getCursorPositionInViewport(GLFWwindow *window);
-
-
-
-	void selectionBufferPass();
-    void mainRenderPass();
-	void VertexRenderPass();
-
-	void FramebufferSetup();
-	void meshRenderSetup();
-
-	void updateFacesSelected(unsigned int face_id,unsigned int mesh_id);
-	void updateVerticesSelected(unsigned int vertex_id,unsigned int mesh_id);
-	void updateEdgesSelected(unsigned int edge_id,unsigned int mesh_id);
-	void resetSelectionBuffer(unsigned int type);//type can be FACE_EDITING,VERTEX_EDITING or EDGE_EDITING
+	std::unique_ptr<Renderer> renderer;
+	std::map<std::string,std::unique_ptr<Scene> >scene_name_to_scene_object;//all the scenes to render in the main window
 
 	void cleanup();
 
-	void resizeFramebuffer(int width, int height);
 
-	std::optional<std::tuple<unsigned int,unsigned int,unsigned int> >faceDetection();
+
 	void setWindow(GLFWwindow *window) {
 		this->window = window;
 	}
-
-	void setGui(GUI *gui) {
+	void setGui(GUI gui) {
 		this->gui = gui;
 	}
-	void setViewMatrix(glm::mat4 viewm){
-		this->view = viewm;
-	}
-	void setProjectionMatrix(glm::mat4 projectionm) {
-		this->projection = projectionm;
-	}
-	void addMesh(Mesh *mesh,std::string name,glm::mat4 model) {
-		RenderInfo render_info;
-		render_info.model=model;
-		mesh_to_render_info[mesh]=render_info;//store the render info for the mesh
-		meshes.push_back(mesh);
-		mesh_name_to_id[name] = meshes.size() - 1;
-	}
-	void setModelMatrix(std::string name,glm::mat4 model) {
-		unsigned int mesh_id=mesh_name_to_id[name];
-		mesh_to_render_info[meshes[mesh_id]].model=model;
 
-	}
-private:
+	void addScene(std::string name,std::unique_ptr<Scene> scene) {
 
+		scene_name_to_scene_object[name] = std::move(scene);
+	}
+	void setWindowSize(int width, int height) {
+		this->width = width;
+		this->height = height;
+	}
+	void processInput();
 };
 
 

@@ -22,7 +22,7 @@ struct MainGUI_state
 class GUI{
 
 public:
-	unsigned int currentState=FACE_EDITING;
+	GUIState currentState = FACE_EDITING;
 	unsigned int reset_selection_buffer_flag=0;//flag to reset the selection buffer on the GPU when the clear button is pressed
 	MainGUI_state main_state;
 	void showMainWindowGUI();

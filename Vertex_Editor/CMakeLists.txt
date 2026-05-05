@@ -30,6 +30,8 @@ add_executable(${PROJECT_NAME}
         src/MainWindow.cpp
         src/Scene.cpp
         include/Scene.h
+        src/Renderer.cpp
+        include/Renderer.h
 
 )
 target_include_directories(${PROJECT_NAME} PRIVATE
