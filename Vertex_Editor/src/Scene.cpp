@@ -21,7 +21,6 @@ void Scene::updateVerticesSelected(unsigned int vertex_id,unsigned int mesh_id) 
 	for (int i = 0; i < mesh_id; i++) {
 		global_id += meshes[i]->vertices.size();
 	}
-
 	// change the state of the vertex in the global array
 	vertex_selection_array[global_id + vertex_id] = !vertex_selection_array[global_id + vertex_id];
 	updateSelectionBuffer(VERTEX_EDITING);
@@ -43,14 +42,15 @@ void Scene::resetSelectionBuffer(GUIState type) {
 	{
 		case FACE_EDITING:
 			std::fill(face_selection_array.begin(), face_selection_array.end(), 0);
-
+			updateSelectionBuffer(FACE_EDITING);
 			break;
 		case VERTEX_EDITING:
 			std::fill(vertex_selection_array.begin(), vertex_selection_array.end(), 0);
-
+			updateSelectionBuffer(VERTEX_EDITING);
 			break;
 		case EDGE_EDITING:
 			std::fill(edge_selection_array.begin(), edge_selection_array.end(), 0);
+			updateSelectionBuffer(EDGE_EDITING);
 			break;
 		default:
 			break;
@@ -65,6 +65,7 @@ void Scene::meshArraysSetup(Mesh* mesh) {
 	//adds zeros to the end for each of these values of the mesh
 	for(int i=0;i<mesh->faces.size();i++) {
 		face_selection_array.push_back(0);
+		
 	}
 	for (int i = 0; i < mesh->vertices.size(); i++)
 	{
@@ -122,8 +123,6 @@ void Scene::meshRenderSetup(Mesh *mesh)
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void *)offsetof(Vertex, point));
 		glEnableVertexAttribArray(0);
 		glBindVertexArray(0);
-
-		meshArraysSetup(mesh);
 
 }
 

@@ -23,9 +23,10 @@ class Renderer {
 	GUIState render_mode;//FACE, VERTEX OR EDGE EDITING
 
 	public:
-	Renderer(GLFWwindow *window) {
+	Renderer(GLFWwindow *window,Scene *start_scene) {
 
 		this->window = window;
+		current_scene = start_scene;
 		FramebufferSetup();
 		shaderSetup();
 	}
@@ -60,9 +61,14 @@ class Renderer {
 	void setRenderMode(GUIState state) {
 		this->render_mode = state;
 	}
+	GUIState getRenderMode(){
+		return render_mode;
+	}
+
+	void setViewProjectionMatrices();
 	void cleanup();
 	bool rendererIsReady(std::string* out_error = nullptr)const ;
-	std::optional<std::tuple<unsigned int, unsigned int, unsigned int>> faceDetection();
+	std::optional<std::tuple<unsigned int, unsigned int, unsigned int>> meshElementDetection();
 	std::pair<int,int> getCursorPositionInViewport(GLFWwindow *window);
 };
 

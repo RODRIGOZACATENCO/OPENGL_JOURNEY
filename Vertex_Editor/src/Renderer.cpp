@@ -58,15 +58,16 @@ void Renderer::selectionBufferPass()
 			break;
 	}
 }
+
 void Renderer::mainRenderPass()
 {
+	setViewProjectionMatrices();
 	std::string error;
 	if (!rendererIsReady(&error)) {
 		std::cout << "Renderer is not ready" << std::endl;
 		std::cout << error << std::endl;
 		return;
 	}
-	selectionBufferPass();
 	glfwGetFramebufferSize(window, &width, &height);
 	glViewport(0, 0, width, height);
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -79,8 +80,9 @@ void Renderer::mainRenderPass()
 	int face_offset=0;//offset of the number of faces in each mesh, sent to the gpu
 	int vertex_offset=current_scene->getFaceSelectionArray()->size();
 	int edges_offset =vertex_offset+current_scene->getVertexSelectionArray()->size();
-
+	int i=0;
 	for (auto mesh : *current_scene->getMeshes())
+
 	{
 		RenderInfo ri = current_scene->getRenderInfo(mesh);
 		main_shader->use();
@@ -91,7 +93,7 @@ void Renderer::mainRenderPass()
 
 		glBindVertexArray(ri.VAO);
 		glDrawElements(GL_TRIANGLES, mesh->face_render_indices.size(), GL_UNSIGNED_INT, 0);
-		/*
+		
 		if(render_mode==VERTEX_EDITING) {
 
 			vertex_pass_shader->use();
@@ -100,17 +102,17 @@ void Renderer::mainRenderPass()
 			vertex_offset += mesh->vertices.size();
 			glDrawArrays(GL_POINTS, 0,mesh->vertices.size());
 		}
-
-		if (gui->currentState == EDGE_EDITING)
-		{
-			glDisable(GL_CULL_FACE);
-			main_pass_edge_shader->use();
-			main_pass_edge_shader->setMat4("model", ri->model);
-			main_pass_edge_shader->setInt("num_vertices_offset", vertex_offset);
-			edges_offset += mesh->edges.size();
-			glDrawElements(GL_LINES, mesh->edge_render_indices.size(), GL_UNSIGNED_INT, 0);
-		}
-		*/
+		/*
+				if (render_mode == EDGE_EDITING)
+				{
+					glDisable(GL_CULL_FACE);
+					main_pass_edge_shader->use();
+					main_pass_edge_shader->setMat4("model", ri.model);
+					main_pass_edge_shader->setInt("num_vertices_offset", vertex_offset);
+					edges_offset += mesh->edges.size();
+					glDrawElements(GL_LINES, mesh->edge_render_indices.size(), GL_UNSIGNED_INT, 0);
+				}
+					*/
 		glBindVertexArray(0);
 	}
 }
@@ -142,25 +144,7 @@ void Renderer::FramebufferSetup()
 		std::cout << "ERROR::FRAMEBUFFER:: Framebuffer is not complete!" << std::endl;
 	}
 }
-
-
-//@TODO later, change it into different function that generates new renders
-void Renderer::shaderSetup() {
-	std::filesystem::path shadersRoot = std::filesystem::path(ROOT_DIR) / "shaders";
-	std::string vertex_shader_path = (shadersRoot / "shader.vert").string();
-	std::string geometry_shader_path = (shadersRoot / "shader.geom").string();
-	std::string fragment_shader_path = (shadersRoot / "shader.frag").string();
-	std::string fragment_colorPickingShader_path = (shadersRoot / "colorPickingShader.frag").string();
-	std::string fragment_vertexPassShader_path = (shadersRoot / "vertexPass.frag").string();
-	std::string fragment_edgePass_path = (shadersRoot / "edgePass.frag").string();
-	std::string geometry_edgePass_shader_path = (shadersRoot / "edgePass.geom").string();
-	std::string vertex_edgePass_shader_path = (shadersRoot / "edgePass.vert").string();
-	std::string main_edge_pass_shader_path = (shadersRoot / "mainEdgePass.frag").string();
-	main_shader = new Shader(vertex_shader_path.c_str(), geometry_shader_path.c_str(), fragment_shader_path.c_str());
-	color_picking_shader = new Shader(vertex_shader_path.c_str(), fragment_colorPickingShader_path.c_str());
-	vertex_pass_shader = new Shader(vertex_shader_path.c_str(), fragment_vertexPassShader_path.c_str());
-	edge_pass_shader = new Shader(vertex_edgePass_shader_path.c_str(), geometry_edgePass_shader_path.c_str(), fragment_edgePass_path.c_str());
-	main_pass_edge_shader = new Shader(vertex_edgePass_shader_path.c_str(), geometry_edgePass_shader_path.c_str(),main_edge_pass_shader_path.c_str());
+void Renderer::setViewProjectionMatrices(){
 
 	main_shader->use();
 	main_shader->setMat4("view", current_scene->getViewMatrix());
@@ -183,6 +167,26 @@ void Renderer::shaderSetup() {
 	main_pass_edge_shader->setMat4("projection", current_scene->getProjectionMatrix());
 }
 
+//@TODO later, change it into different function that generates new renders
+void Renderer::shaderSetup() {
+	std::filesystem::path shadersRoot = std::filesystem::path(ROOT_DIR) / "shaders";
+	std::string vertex_shader_path = (shadersRoot / "shader.vert").string();
+	std::string geometry_shader_path = (shadersRoot / "shader.geom").string();
+	std::string fragment_shader_path = (shadersRoot / "shader.frag").string();
+	std::string fragment_colorPickingShader_path = (shadersRoot / "colorPickingShader.frag").string();
+	std::string fragment_vertexPassShader_path = (shadersRoot / "vertexPass.frag").string();
+	std::string fragment_edgePass_path = (shadersRoot / "edgePass.frag").string();
+	std::string geometry_edgePass_shader_path = (shadersRoot / "edgePass.geom").string();
+	std::string vertex_edgePass_shader_path = (shadersRoot / "edgePass.vert").string();
+	std::string main_edge_pass_shader_path = (shadersRoot / "mainEdgePass.frag").string();
+	main_shader = new Shader(vertex_shader_path.c_str(), geometry_shader_path.c_str(), fragment_shader_path.c_str());
+	color_picking_shader = new Shader(vertex_shader_path.c_str(), fragment_colorPickingShader_path.c_str());
+	vertex_pass_shader = new Shader(vertex_shader_path.c_str(), fragment_vertexPassShader_path.c_str());
+	edge_pass_shader = new Shader(vertex_edgePass_shader_path.c_str(), geometry_edgePass_shader_path.c_str(), fragment_edgePass_path.c_str());
+	main_pass_edge_shader = new Shader(vertex_edgePass_shader_path.c_str(), geometry_edgePass_shader_path.c_str(),main_edge_pass_shader_path.c_str());
+	setViewProjectionMatrices();
+}
+
 void Renderer::cleanup() {
 	glDeleteFramebuffers(1, &color_picking_framebuffer_info.FBO);
 	glDeleteTextures(1, &color_picking_framebuffer_info.texture);
@@ -202,14 +206,13 @@ void Renderer::resizeFramebuffer()
 	glBindRenderbuffer(GL_RENDERBUFFER, 0); // Unbind when done
 }
 
-std::optional<std::tuple<unsigned int, unsigned int, unsigned int>> Renderer::faceDetection(){
+std::optional<std::tuple<unsigned int, unsigned int, unsigned int>> Renderer::meshElementDetection(){
 	auto [framebuffer_x, framebuffer_y] = getCursorPositionInViewport(window);
 	glBindFramebuffer(GL_FRAMEBUFFER, color_picking_framebuffer_info.FBO);
 	glReadBuffer(GL_COLOR_ATTACHMENT0);
 	unsigned int pixel_data[3];
 	GLint currentFBO;
 	glGetIntegerv(GL_READ_FRAMEBUFFER_BINDING, &currentFBO);
-	std::cout << "Reading from FBO: " << currentFBO << " expected: " << color_picking_framebuffer_info.FBO << std::endl;
 	glReadPixels(framebuffer_x, framebuffer_y, 1, 1, GL_RGB_INTEGER, GL_UNSIGNED_INT, &pixel_data);
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	std::cout << pixel_data[0] << " " << pixel_data[1] <<" "<<pixel_data[2] << std::endl;

@@ -39,6 +39,7 @@ int main()
 		std::cout << "Failed to initialize GLAD" << std::endl;
 		return -1;
 	}
+	MainWindow main_window(window);
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
 	ImGuiIO &io = ImGui::GetIO();
@@ -62,7 +63,7 @@ int main()
 	//@TODO move all mesh information into a Scene class - WORKING
 	//@TODO move all rendering calls into a Renderer class, organize better the shaders names
 	//@TODO create simple functions that save and load processed meshes as a binary file
-	MainWindow main_window(window);
+
 	main_window.use();
 
 

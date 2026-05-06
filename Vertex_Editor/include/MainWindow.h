@@ -10,7 +10,7 @@
 #include "Renderer.h"
 #include "Scene.h"
 #include <memory>
-
+#include "glm/glm.hpp"
 inline std::vector<float> cube_vertices = {
 	-1, -1, -1, // 0 bottom left back
 	-1, -1,  1, // 1 bottom left front
@@ -64,28 +64,30 @@ public:
 		glfwGetFramebufferSize(window,&width,&height);
 		this->window = window;
 
-		Mesh *cube=new Mesh(&cube_vertices,&faces);
+		Mesh *pyramid=new Mesh(&piramid_vertices,&piramid_faces);
 		//starts with a default scene
-		glm::mat4 view=glm::lookAt(glm::vec3(0,1,5),glm::vec3(0,0,0),glm::vec3(0,1,0));
+		glm::mat4 view=glm::lookAt(glm::vec3(0,1,2),glm::vec3(0,0,0),glm::vec3(0,1,0));
 		glm::mat4 projection=glm::perspective(glm::radians(45.0f),(float)width/(float)height,0.1f,100.0f);
 		auto default_scene=std::make_unique<Scene>(view,projection);//intialize the default scene
-		default_scene->addMesh(cube,"cube",glm::mat4(1.0f));
+		default_scene->addMesh(pyramid,"cube",glm::mat4(1.0f));
 
+
+		glm::mat4 model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(0.0f, -1.0f, -5.0f));
+		default_scene->setModelMatrix("cube",model);
 		gui= GUI();//creates the main window gui
-		gui.main_state.isEdgeSelectionActive = true; // sets the initial state of the face selection button to active
+		gui.main_state.isFaceSelectionActive = true; // sets the initial state of the face selection button to active
 		gui.currentState=FACE_EDITING;
-		renderer=std::make_unique<Renderer>(window);
+		renderer=std::make_unique<Renderer>(window,default_scene.get());
 		scene_name_to_scene_object["default"]=std::move(default_scene);
 		std::string error;
 
-		renderer->setCurrentScene(default_scene.get());
+		renderer->setCurrentScene(scene_name_to_scene_object["default"].get());
 		renderer->setScreenSize(width,height);
 		renderer->setRenderMode(FACE_EDITING);
-
-
-
 		glfwSetWindowUserPointer(window, this);
 		glfwSetMouseButtonCallback(window,mainWindowMouseCallback);
+
 		glfwSetFramebufferSizeCallback(window,framebufferSizeCallback);
 
 	}

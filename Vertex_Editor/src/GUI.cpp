@@ -7,6 +7,7 @@
 #include "glad/glad.h"
 #include <imgui.h>
 #include "imgui_impl_opengl3.h"
+// Face button
 
 void GUI::showMainWindowGUI()
 {
@@ -26,11 +27,10 @@ void GUI::showMainWindowGUI()
 	ImGui::Text("Face Selection:");
 	ImGui::SameLine();
 
-	ImGui::BeginDisabled(vertexActive || edgeActive);
 	if (ImGui::Button(faceActive ? "ON##face" : "OFF##face"))
 	{
-		main_state.isFaceSelectionActive = !main_state.isFaceSelectionActive;
-		currentState = FACE_EDITING;
+		std::cout<<"faceeeee";
+		setState(FACE_EDITING);
 	}
 	ImGui::PopStyleColor(3);
 
@@ -39,7 +39,7 @@ void GUI::showMainWindowGUI()
 	{
 		reset_selection_buffer_flag=FACE_EDITING;//set the flag to reset the selection buffer on the GPU in the main loop
 	}
-	ImGui::EndDisabled();
+
 
 	// --- Vertex Selection ---
 	ImGui::PushStyleColor(ImGuiCol_Button, vertexActive ? ImVec4(0.2f, 0.7f, 0.2f, 1.0f) : ImGui::GetStyleColorVec4(ImGuiCol_Button));
@@ -50,11 +50,9 @@ void GUI::showMainWindowGUI()
 	ImGui::Text("Vertex Selection:");
 	ImGui::SameLine();
 
-	ImGui::BeginDisabled(faceActive || edgeActive);
 	if (ImGui::Button(vertexActive ? "ON##vertex" : "OFF##vertex"))
 	{
-		main_state.isVertexSelectionActive = !main_state.isVertexSelectionActive;
-		currentState = VERTEX_EDITING;
+		setState(VERTEX_EDITING);
 	}
 	ImGui::PopStyleColor(3);
 
@@ -64,7 +62,7 @@ void GUI::showMainWindowGUI()
 		
 		reset_selection_buffer_flag=VERTEX_EDITING;//set the flag to reset the selection buffer on the GPU in the main loop
 	}
-	ImGui::EndDisabled();
+
 
 	// --- Edge Selection ---
 	ImGui::PushStyleColor(ImGuiCol_Button, edgeActive ? ImVec4(0.2f, 0.7f, 0.2f, 1.0f) : ImGui::GetStyleColorVec4(ImGuiCol_Button));
@@ -75,11 +73,9 @@ void GUI::showMainWindowGUI()
 	ImGui::Text("Edge Selection:");
 	ImGui::SameLine();
 
-	ImGui::BeginDisabled(vertexActive || faceActive);
 	if (ImGui::Button(edgeActive ? "ON##edge" : "OFF##edge"))
 	{
-		main_state.isEdgeSelectionActive = !main_state.isEdgeSelectionActive;
-		currentState = EDGE_EDITING;
+		setState(EDGE_EDITING);
 	}
 	ImGui::PopStyleColor(3);
 
@@ -88,11 +84,9 @@ void GUI::showMainWindowGUI()
 	{
 		reset_selection_buffer_flag=EDGE_EDITING;//set the flag to reset the selection buffer on the GPU in the main loop
 	}
-	ImGui::EndDisabled();
+
 
 	ImGui::End();
-
-	// Rendering logic
 	ImGui::Render();
 	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }
